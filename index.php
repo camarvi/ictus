@@ -11,12 +11,8 @@ CAMBIAR DATOS
 
 require_once ("common.inc.php");
 
-list($listaconsulta_c3)= Tipo_consulta_c3::getTipoConsulta();
-list($comp_seguro)= Comp_Seguro::getListaComp();
-list($tipo_parte)=  Tipo_Parte_acc::getTipoParte();
-list($acc_circul)=  Tipo_Acc_Circulacion::getTipoAcc();
-list($lista_autoridad)=  Tipo_Autoridad::getListaAutoridad();
-list($listacentro)=  Centros::listaCentros();
+//list($listaconsulta_c3)= Tipo_consulta_c3::getTipoConsulta();
+
    
 //LEO LAS VARIABLES QUE ME PASAN POR GET PARA 
 //OBTENER LOS DATOS DEL PACIENTE
@@ -27,23 +23,7 @@ if (isset ($_GET['nuhsa'])){
     $centro=$_GET['centro'];
     $cnp=$_GET['cnpprofesional'];
  
-    $usuario=Usuarios::getUsuario($_GET['nuhsa']);
-    if (isset($usuario)) {
-    $nombre_usuario=trim($usuario->getValueEncoded('NOMBRE'));
-    $apellidos=trim($usuario->getValueEncoded('APE1')) . " " . trim($usuario->getValueEncoded('APE2'));
-    $telefono=$usuario->getValueEncoded('TELEFONO');
-    $dni=trim($usuario->getValueEncoded('IDENTIFICADOR'));
-    $movil=$usuario->getValueEncoded('MOVIL');        
-    }
-    else {
-      $nombre_usuario=""; 
-      $apellidos="";
-      $telefono="";
-      $dni="";
-      $movil="";
-    }
    
-    
     
 }
 
@@ -53,28 +33,16 @@ if (isset ($_GET['nuhsa'])){
 
    
      
-     $centro=$_POST['centro'];
+    $centro=$_POST['centro'];
     
-     $separar =explode('/',$_POST["fecha_asistencia"]);
+     $separar =explode('/',$_POST["fecha"]);
         $dia=trim($separar[0]);
         $mes=trim($separar[1]);
         $anio=trim($separar[2]);
-     $fecha_asistenciaok=$anio . "-" . $mes . "-" . $dia;
+     $fecha_ok=$anio . "-" . $mes . "-" . $dia;
      
-     $hora=$_POST['hora'];
-     $tipo_consulta=$_POST['tipo_consulta'];    
-     $an=$_POST['an'];
-     
-    if (isset ($_POST['nombre'])) { 
-        $nombre=  trim(html_entity_decode($_POST['nombre'])) ;
-    }  else {$nombre=""; }    
-     
-    if (isset ($_POST['apellidos'])) { 
-        $apellidos=  trim(html_entity_decode($_POST['apellidos'])) ;
-    }  else {$apellidos=""; }  
     
-         
-    $dni=$_POST['dni'];
+     $an=$_POST['an'];
      
     
     if (strlen($_POST["fnacimiento"])){
@@ -87,33 +55,7 @@ if (isset ($_GET['nuhsa'])){
       $fnacimientook=""; }
     
      
-     $seg_social=trim($_POST['seg_social']);
-    
-    if (isset ($_POST['domicilio'])) { 
-        $domicilio=  trim(html_entity_decode($_POST['domicilio'])) ;
-    }  else {$domicilio=""; }  
-        
-    if (isset ($_POST['localidad'])) { 
-        $localidad=  trim(html_entity_decode($_POST['localidad'])) ;
-    }  else {$localidad=""; }  
-    
-    if (isset ($_POST['provincia'])) { 
-        $provincia=  trim(html_entity_decode($_POST['provincia'])) ;
-    }  else {$provincia=""; }  
-    
-    if (isset ($_POST['cp'])) { 
-        $cp=  trim(html_entity_decode($_POST['cp'])) ;
-    }  else {$cp=""; }  
-    
-    if (isset($_POST['telefono'])){
-        $telefono=$_POST['telefono'];
-    } else { $telefono="";}
-    
-    if (isset($_POST['email'])){
-        $email=trim($_POST['email']);
-    } else { $email="";}
- 
-    
+       
     $comp_seguro=$_POST['comp_seguro'];
     
     if (isset($_POST['indicar_comp'])){
@@ -133,29 +75,7 @@ if (isset ($_GET['nuhsa'])){
         $comunitarios=1; 
      } else { $comunitarios=0; }
      
-     $tipo_accidente=trim($_POST['tipo_accidente']); 
-     $colision=trim($_POST['colision']); 
-     $tipo_autoridad=$_POST['tipo_autoridad'];
-     
-     
-    if (strlen($_POST["fecha_accidente"])){
-        $separar_accidente =explode('/',$_POST["fecha_accidente"]);
-        $dia_acc=trim($separar_accidente[0]);
-        $mes_acc=trim($separar_accidente[1]);
-        $anio_acc=trim($separar_accidente[2]);
-        $fecha_accidente_ok=$anio_acc . "-" . $mes_acc . "-" . $dia_acc;
-      } else {
-      $fecha_accidente_ok=""; }
-     
-     
-    
-    $hora_accidente=$_POST['hora_accidente'];
-    $numero_vehiculos=trim($_POST['numero_vehiculos']);
-     
-    if (isset ($_POST['lugar_accidente'])) { 
-        $lugar_accidente=  trim(html_entity_decode($_POST['lugar_accidente'])) ;
-        
-    }  else {$lugar_accidente=""; }    
+   
     
     if (isset ($_POST['otros_lesionados'])) { 
         $otros_lesionados=  trim(html_entity_decode($_POST['otros_lesionados'])) ;
@@ -187,66 +107,7 @@ if (isset ($_GET['nuhsa'])){
         
     }  else {$comp_seg_prop=""; }    
     
-    if (isset ($_POST['num_seguro_prop'])) { 
-        $num_seguro_prop=  trim(html_entity_decode($_POST['num_seguro_prop'])) ;
-        
-    }  else {$num_seguro_prop=""; }    
    
-    if (isset ($_POST['juzgado'])) { 
-        $juzgado=  trim(html_entity_decode($_POST['juzgado'])) ;
-        
-    }  else {$juzgado=""; }    
-    
-    
-     if (isset ($_POST['matricula_cont'])) { 
-        $matricula_cont=  trim(html_entity_decode($_POST['matricula_cont'])) ;
-        
-    }  else {$matricula_cont=""; }    
-    
-    if (isset ($_POST['modelo_cont'])) { 
-        $modelo_cont=  trim(html_entity_decode($_POST['modelo_cont'])) ;
-        
-    }  else {$modelo_cont=""; }    
-    
-    if (isset ($_POST['conductor_cont'])) { 
-        $conductor_cont=  trim(html_entity_decode($_POST['conductor_cont'])) ;
-        
-    }  else {$conductor_cont=""; }    
-    
-    if (isset ($_POST['propietario_cont'])) { 
-        $propietario_cont=  trim(html_entity_decode($_POST['propietario_cont'])) ;
-        
-    }  else {$propietario_cont=""; }    
-    
-    if (isset ($_POST['comp_seg_cont'])) { 
-        $comp_seg_cont=  trim(html_entity_decode($_POST['comp_seg_cont'])) ;
-        
-    }  else {$comp_seg_cont=""; }    
-    
-    if (isset ($_POST['num_seguro_cont'])) { 
-        $num_seguro_cont=  trim(html_entity_decode($_POST['num_seguro_cont'])) ;
-        
-    }  else {$num_seguro_cont=""; }    
-    
-    if (isset ($_POST['motivo_consulta'])) { 
-        $motivo_consulta=  trim(html_entity_decode($_POST['motivo_consulta'])) ;
-        
-    }  else {$motivo_consulta=""; }   
-    
-    if (isset ($_POST['tratamiento'])) { 
-        $tratamiento=  trim(html_entity_decode($_POST['tratamiento'])) ;
-        
-    }  else {$tratamiento=""; }   
-    
-    if (isset ($_POST['pruebas'])) { 
-        $pruebas=  trim(html_entity_decode($_POST['pruebas'])) ;
-        
-    }  else {$pruebas=""; }  
-    
-    if (isset ($_POST['interq_quir'])) { 
-        $interq_quir=  trim(html_entity_decode($_POST['interq_quir'])) ;
-        
-    }  else {$interq_quir=""; }   
     
     $derivacion=$_POST['derivacion'];
     
@@ -261,36 +122,6 @@ if (isset ($_GET['nuhsa'])){
     $revision_pro_ant= (int) $_POST['revision_pro_ant'];
     
     
-    if (strlen($_POST["fecha_1_asist"])){
-        $separar_fecha1 =explode('/',$_POST["fecha_1_asist"]);
-        $dia_fecha1=trim($separar_fecha1[0]);
-        $mes_fecha1=trim($separar_fecha1[1]);
-        $anio_fecha1=trim($separar_fecha1[2]);
-        $fecha_p_asist_ok=$anio_fecha1 . "-" . $mes_fecha1 . "-" . $dia_fecha1;
-      } else {
-      $fecha_p_asist_ok=""; }
-    
-     
-    
-    if (isset ($_POST['facultativo'])) { 
-        $facultativo=  trim(html_entity_decode($_POST['facultativo'])) ;
-        
-    }  else {$facultativo=""; }   
-    
-    if (isset ($_POST['enfermero'])) { 
-        $enfermero=  trim(html_entity_decode($_POST['enfermero'])) ;
-        
-    }  else {$enfermero=""; }  
-    
-    if (isset ($_POST['usuario'])) { 
-        $usuario=  trim(html_entity_decode($_POST['usuario'])) ;
-        
-    }  else {$usuario=""; }   
-    
-    if (isset ($_POST['dni_acomp'])) { 
-        $dni_acomp=  trim(html_entity_decode($_POST['dni_acomp'])) ;
-        
-    }  else {$dni_acomp=""; }  
     
     if (isset ($_POST['parentesco'])) { 
         $parentesco=  trim(html_entity_decode($_POST['parentesco'])) ;
@@ -299,66 +130,35 @@ if (isset ($_GET['nuhsa'])){
    
     
     $nuevaficha=new Ficha(array(
-        "CENTRO"=>$centro,
-        "FECHA_ASISTENCIA"=>$fecha_asistenciaok,
-        "HORA"=>$hora,
-        "TIPO_CONSULTA"=>$tipo_consulta,
         "AN"=>$an,
-        "NOMBRE"=>$nombre,
-        "APELLIDOS"=>$apellidos,
-        "DNI"=>$dni,
+        "CENTRO"=>$centro,
+        "CNP"=>$cnp,
+        "SEXO"=>~sexo,
         "FNACIMIENTO"=>$fnacimientook,
-        "SEG_SOCIAL"=>$seg_social,
-        "DOMICILIO"=>$domicilio,
-        "LOCALIDAD"=>$localidad,
-        "PROVINCIA"=>$provincia,
-        "CP"=>$cp,
-        "TELEFONO"=>$telefono,
-        "EMAIL"=>$email,
-        "COMP_SEGURO"=>$comp_seguro,
-        "INDICAR_COMP"=>$indicar_comp,
-        "TIPO_PARTE"=>$tipo_parte,
-        "NOMBRE_EMP"=>$nombre_emp,
-        "COMUNITARIOS"=>$comunitarios,
-        "TIPO_ACCIDENTE"=>$tipo_accidente,
-        "FECHA_ACCIDENTE"=>$fecha_accidente_ok,
-        "HORA_ACCIDENTE"=>$hora_accidente,
-        "NUMERO_VEHICULOS"=>$numero_vehiculos,
-        "COLISION"=>$colision,
-        "TIPO_AUTORIDAD"=>$tipo_autoridad,
-        "LUGAR_ACCIDENTE"=>$lugar_accidente,
-        "OTROS_LESIONADOS"=>$otros_lesionados,
-        "MATRICULA_PROP"=>$matricula_prop,
-        "MODELO_PROP"=>$modelo_prop,
-        "CONDUCTOR_PROP"=>$conductor_prop,
-        "PROPIETARIO_PROP"=>$propietario_prop,
-        "COMP_SEG_PROP"=>$comp_seg_prop,
-        "NUM_SEGURO_PROP"=>$num_seguro_prop,
-        "JUZGADO"=>$juzgado,
-        
-        "MATRICULA_CONT"=>$matricula_cont,
-        "MODELO_CONT"=>$modelo_cont,
-        "CONDUCTOR_CONT"=>$conductor_cont,
-        "PROPIETARIO_CONT"=>$propietario_cont,
-        "COMP_SEG_CONT"=>$comp_seg_cont,
-        "NUM_SEGURO_CONT"=>$num_seguro_cont,
-       
-        "MOTIVO_CONSULTA"=>$motivo_consulta,
-        "TRATAMIENTO"=>$tratamiento,
-        "PRUEBAS"=>$pruebas,
-        
-        "INTERQ_QUIR"=>$interq_quir,
-        "DERIVACION"=>$derivacion,
-        "HOSPITAL_DERIVACION"=>$hospital_derivacion,
-        "AMBULANCIA"=>$ambulancia,
-        
-        "REVISION_PRO_ANT"=>$revision_pro_ant,
-        "FECHA_P_ASIST"=>$fecha_p_asist_ok,
-        "FACULTATIVO"=>$facultativo,
-        "ENFERMERO"=>$enfermero,
-        "USUARIO"=>$usuario,
-        "DNI_ACOMP"=>$dni_acomp,
-        "PARENTESCO"=>$parentesco));  
+        "FECHA"=>$fecha_ok,
+        "TIEMPO"=>$tiempo,
+        "DESPERTAR"=>$despertar,
+        "TRA"=>$tra,
+        "CIFRA_TRA"=>$cifra_tra,
+        "GLUCEMIA"=>$glucemia,
+        "CIFRA_CLUCEMIA"=>$cifra_glucemia,
+        "TA"=>$ta,
+        "CIFRA_TA"=>$cifra_ta,
+        "OXIGENO"=>$oxigeno,
+        "CIFRA_OXIGENO"=>$cifra_oxigeno,
+        "CARDIACA"=>$cardiaca,
+        "CIFRA_CARDIACA"=>$cifra_cardiaca,
+        "ECG"=>$ecg,
+        "TERMOREGULACION"=>$termoregulacion,
+        "ANTIHIPERTENSIVO"=>$antihipertensivo,
+        "CIFRA_ANTIHIPERTENSIVO"=>$cifra_antihipertensivo,
+        "TRAT_GLUCEMIA"=>$trat_glucemia,
+        "CIFRA_TRAT_GLUCEMIA"=>$cifra_trat_glucemia,
+        "BRAZO"=>$brazo,
+        "NIHSS"=>$nihss,
+        "RANKIN"=>$rankin,
+        "ACTIV_ICTUS"=>$activ_ictus,
+        "TRASLADO"=>$traslado));  
     
     $nuevaficha->nueva_ficha();
     
