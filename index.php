@@ -257,7 +257,7 @@ if (isset ($_GET['nuhsa'])){
          
            
           <fieldset>  
-           
+           <legend>Datos Episodio</legend>
            <table class="tablaentrada">
                 <tr>
                     <td>
@@ -272,7 +272,10 @@ if (isset ($_GET['nuhsa'])){
                       </select>    
                     </td>
                 </tr>
+               
+                
                 <tr>
+                   
                     <td>
                       <label>CONTROL DE TRA:</label> 
                       <select name="tra" id="tra"> 
@@ -280,7 +283,7 @@ if (isset ($_GET['nuhsa'])){
                        <option value="1">Si</option>
                       </select>   
                       <label>Valor:</label>  
-                      <input type="text" id="cifra_tra" name="cifra_tra" size="5"/>  
+                      <input type="text" id="cifra_tra" name="cifra_tra" size="3"/>  
                     </td>
                     
                     <td>
@@ -290,71 +293,125 @@ if (isset ($_GET['nuhsa'])){
                         <option value="1">Si</option>
                       </select>   
                       <label>Valor:</label>  
-                      <input type="text" id="cifra_glucemia" name="cifra_glucemia" size="5"/>  
+                      <input type="text" id="cifra_glucemia" name="cifra_glucemia" size="3"/>  
+                   </td>
+                </tr>
+                
+                 
+                <tr>
+                   
+                    <td>
+                      <label>CONTROL DE TA:</label> 
+                      <select name="ta" id="ta"> 
+                        <option value="0">No</option>
+                        <option value="1">Si</option>
+                      </select>   
+                      <label>Valor:</label>  
+                      <input type="text" id="cifra_ta" name="cifra_ta" size="3"/>  
+                   </td>
+                    <td>
+                      <label>CONTROL SATURACION OXIGENO:</label> 
+                      <select name="oxigeno" id="oxigeno"> 
+                        <option value="0">No</option>
+                        <option value="1">Si</option>
+                      </select>   
+                      <label>Valor:</label>  
+                      <input type="text" id="cifra_oxigeno" name="cifra_oxigeno" size="3"/>  
                    </td>
                     
                 </tr>
-           
+                
+                <tr>
+                   <td>
+                      <label>CONTROL FRECUENCIA CARDIACA:</label> 
+                      <select name="cardiaca" id="cardiaca"> 
+                        <option value="0">No</option>
+                        <option value="1">Si</option>
+                      </select>   
+                      <label>Valor:</label>  
+                      <input type="text" id="cifra_cardiaca" name="cifra_cardiaca" size="3"/>  
+                   </td>
+                    <td>
+                      <label>REALIZACION ECG:</label> 
+                      <select name="ecg" id="ecg"> 
+                        <option value="0">No</option>
+                        <option value="1">Si</option>
+                      </select>   
+                      </td>
+                </tr>
+                
+                <tr>
+                   <td>
+                      <label>MEDIDAS DE TERMOREGULACION:</label> 
+                      <select name="termoregulacion" id="termoregulacion"> 
+                        <option value="0">No</option>
+                        <option value="1">Si</option>
+                      </select>   
+                   </td> 
+                   <td>
+                      <label>TRATAMIENTO ANTIHIPERTENSIVO:</label> 
+                      <select name="antihipertensivo" id="antihipertensivo"> 
+                        <option value="0">No</option>
+                        <option value="1">Si</option>
+                      </select>   
+                      <label>Valor:</label>  
+                      <input type="text" id="cifra_antihipertensivo" name="cifra_antihipertensivo" size="3"/>  
+                   </td> 
+                   
+                </tr>
+                
+                <tr>
+                    <td>
+                      <label>TRATAMIENTO GLUCEMIA:</label> 
+                      <select name="trat_glucemia" id="trat_glucemia"> 
+                        <option value="0">No</option>
+                        <option value="1">Si</option>
+                      </select>   
+                      <label>Valor:</label>  
+                      <input type="text" id="cifra_trat_glucemia" name="cifra_trat_glucemia" size="3"/>  
+                   </td> 
+                   <td>
+                      <label>TRATAMIENTO INTRAVENOSO EN BRAZO NO PARETICO:</label> 
+                      <select name="brazo" id="brazo"> 
+                        <option value="0">No</option>
+                        <option value="1">Si</option>
+                      </select>   
+                   </td> 
+                    
+                </tr>
+                
+                <tr>
+                    <td>
+                      <label>ESCALA NIHSS:</label> 
+                      <input type="text" id="nihss" name="nihss" size="15"/>  
+                   </td> 
+                   <td>
+                      <label>ESCALA RANKIN:</label> 
+                      <input type="text" id="rankin" name="rankin" size="15"/>  
+                   </td>  
+                </tr>
+                     
+                 <tr>
+                    <td>
+                      <label>ACTIVACION CODIGO ICTUS:</label> 
+                       <select name="activ_ictus" id="activ_ictus"> 
+                        <option value="0">No</option>
+                        <option value="1">Si</option>
+                      </select>    
+                   </td> 
+                   <td>
+                      <label>TRASLADO SEGUN RECOMENDACIONES:</label> 
+                      <select name="traslado" id="traslado"> 
+                        <option value="0">No</option>
+                        <option value="1">Si</option>
+                      </select>    
+                   </td>  
+                </tr>
+                
+           </table>
            </fieldset>  
  
-           <fieldset>  
-            <legend>ASISTENCIA PRESTADA:</legend>
-            <div class="datos_personales">
-                <label>Motivo de la Consulta Diagn&oacute;stico:</label>
-                <input type="text" id="motivo_consulta" name="motivo_consulta" size="50"/>    
-            </div>
-            <div class="datos_personales">
-                <label>Tratamiento administrado en el Centro:</label>
-                <input type="text" id="tratamiento" name="tratamiento" size="50"/>    
-            </div>
-            <div class="datos_personales">
-                <label>Pruebas Complementarias (RX,An&aacute;lisis, etc..):</label>
-                <input type="text" id="pruebas" name="pruebas" size="50"/>    
-            </div>
-            <div class="datos_personales">
-                <label>intervenciones quir&uacute;rgicas :</label>
-                <input type="text" id="interq_quir" name="interq_quir" size="50"/>    
-            </div>
-            <div class="datos_personales">
-              <label>DERIVACION:</label>  
-               <select name="derivacion" id="derivacion"> 
-                   <option value="0">No</option>
-                   <option value="1">Si</option>
-               </select>   
-                <label>HOSPITAL :</label>
-                <input type="text" id="hospital_derivacion" name="hospital_derivacion" size="30"/>  
-               <label>PRECISA AMBULANCIA:</label>  
-               <select name="ambulancia" id="ambulancia"> 
-                   <option value="0">No</option>
-                   <option value="1">Si</option>
-               </select>   
-            </div>
-            <div class="datos_personales">
-               <label>REVISION DE PROCESO ANTERIOR:</label>  
-               <select name="revision_pro_ant" id="revision_pro_ant"> 
-                   <option value="0">No</option>
-                   <option value="1">Si</option>
-               </select> 
-               <label>FECHA DE PRIMERA ASISTENCIA :</label>
-                <input type="text" id="fecha_1_asist" name="fecha_1_asist" size="10"/>  
-            </div>
-            
-            <div class="datos_personales">
-               <label>EL/LA FACULTATIVO/A:</label>  
-               <input type="text" id="facultativo" name="facultativo" size="25"/>  
-               <label>EL/LA ENFERMERO/A:</label>  
-               <input type="text" id="enfermero" name="enfermero" size="25"/>  
-            </div>  
-            <div class="datos_personales">
-               <label>EL USUARIO:</label>  
-               <input type="text" id="usuario" name="usuario" size="25"/>  
-               <label>DNI ACOMPA&Ntilde;ANTE:</label>  
-               <input type="text" id="dni_acomp" name="dni_acomp" size="8"/>  
-               <label>PARENTESCO:</label>  
-               <input type="text" id="parentesco" name="parentesco" size="15"/> 
-            </div>   
-           </fieldset>
-           
+         
            <button type="submit" id="registar" name="registrar" class="botoncentrado" onclick="cerrar()">
                  Registrar
             </button>
