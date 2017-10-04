@@ -181,7 +181,7 @@ if (isset ($_GET['nuhsa'])){
     <head>
         <meta charset="UTF-8">
    
-      <title>Cobro a Terceros</title>
+      <title>FORMULARIO CODIGO ICTUS</title>
 <meta name="author" content="carlos" />
 
 
@@ -221,7 +221,7 @@ if (isset ($_GET['nuhsa'])){
 </head>
     
 <header>    
-  <h1><u>Cobros a Terceros</u></h1>
+  <h1><u>FORMULARIO CODIGO ICTUS</u></h1>
   <h3>Distrito Sanitario Almer&iacute;a</h3>
  
 </header>       
@@ -230,53 +230,8 @@ if (isset ($_GET['nuhsa'])){
     
        <form action="index.php" method="post">
            <input type="hidden" name="cnp" id="cnp" value="<?php echo $cnp?>"/>
-      
+           <input type="hidden" name="centro" id="centro" value="<?php echo $centro?>"/>
          
-          <fieldset>  
-          <legend>Datos Asistencia</legend>
-            <div class="datos_personales">
-              <label>Centro Salud:</label>
-               <select name="centro" id="centro"> 
-                    <?php
-                        foreach ($listacentro as $lcentro) {
-                            
-                           if ($lcentro->getValueEncoded('COD_CEN')==$centro) {    
-                    ?>
-                        <option value="<?php echo $lcentro->getValueEncoded('COD_CEN')?>" selected="selected">
-                    <?php echo (($lcentro->getValueEncoded('CENTRO')))?></option>
-                    <?php
-                         } else {
-                    ?>
-                        <option value="<?php echo $lcentro->getValueEncoded('COD_CEN')?>">
-                        <?php echo ($lcentro->getValueEncoded('CENTRO'))?></option>
-                   <?php 
-                         }
-                     }     
-                   ?>
-               </select>    
-              
-              <label>Fecha Asist:</label>
-              <input type="text" id="fecha_asistencia" name="fecha_asistencia" size="8" onblur="valida_fecha(this.value)" value="<?php echo date('d/m/Y'); ?>" readonly="readonly"/> 
-        
-               <label>Hora:</label>
-               <input type="text" id="hora" name="hora" size="5" value="<?php echo date('G:i'); ?>"  readonly="readonly"/> 
-              
-               <label>Asistencia:</label>
-               <select name="tipo_consulta" id="tipo_consulta"> 
-                    <?php
-                        foreach ($listaconsulta_c3 as $lconsulta) {
-                            
-                    ?>
-                        <option value="<?php echo $lconsulta->getValueEncoded('COD')?>">
-                    <?php echo (($lconsulta->getValueEncoded('CONSULTA')))?></option>
-                    <?php
-                         } 
-                    ?>     
-               </select>    
-               
-            </div> 
-           
-           </fieldset>         
            
           <fieldset>  
           <legend>Datos Usuario</legend>
@@ -287,210 +242,61 @@ if (isset ($_GET['nuhsa'])){
                       <input type="text" id="an" name="an" size="10" value="<?php echo $an;?>"/> 
                     </td>
                     <td>
-                      <label>Nombre:</label>
-                      <input type="text" id="nombre" name="nombre" size="20" value="<?php echo $nombre_usuario; ?>" />  
+                      <label>Sexo:</label>
+                      <input type="text" id="nombre" name="sexo" size="10" value="<?php echo $sexo; ?>" />  
                     </td>
                     <td>
-                     <label>Apellidos:</label>
-                     <input type="text" id="apellidos" name="apellidos" size="20" value="<?php echo $apellidos; ?>"/> 
+                     <label>F. Nacimiento:</label>
+                     <input type="text" id="fnacimiento" name="fnacimiento" size="10" value="<?php echo $fnacimientook; ?>"/> 
                     </td>
                 </tr>  
-                <tr>
-                   <td>
-                    <label>Dni:</label>
-                    <input type="text" id="dni" name="dni" size="10" value="<?php echo $dni; ?>"/>     
-                   </td> 
-                   <td>
-                     <label>Fecha Nacimiento:</label>
-                     <input type="text" id="fnacimiento" name="fnacimiento" size="8" onblur="valida_fecha(this.value)" />
-                   </td>
-                   <td>
-                     <label>N&ordm;Seg Social:</label>
-                     <input type="text" id="seg_social" name="seg_social" size="10" /> 
-                   </td>
-                </tr>
-                <tr>
-                  <td>
-                    <label>Domicilio:</label>
-                    <input type="text" id="domicilio" name="domicilio" size="20"/>    
-                  </td> 
-                  <td>
-                    <label>Localidad:</label>
-                    <input type="text" id="localidad" name="localidad" size="20"/>  
-                  </td>
-                  <td>
-                    <label>Provincia:</label>
-                    <input type="text" id="provincia" name="provincia" size="20" />  
-                  </td>
-                </tr>
-                 <tr>
-                  <td>
-                    <label>C.P:</label>
-                    <input type="text" id="cp" name="cp" size="20"/>    
-                  </td> 
-                  <td>
-                    <label>Telefono:</label>
-                    <input type="text" id="telefono" name="telefono" size="20" value="<?php echo $telefono; ?>"/>  
-                  </td>
-                  <td>
-                    <label>Email:</label>
-                    <input type="text" id="email" name="email" size="20" />  
-                  </td>
-                </tr>
+              
             </table>      
            
           </fieldset>       
+         
+           
           <fieldset>  
-          <legend>Datos Asistencia</legend>
-            <div class="datos_personales">
-                
-              <label>Mutua:</label>
-               <select name="comp_seguro" id="comp_seguro"> 
-                    <?php
-                        foreach ($comp_seguro as $lcomp) {
-                            
-                    ?>
-                        <option value="<?php echo $lcomp->getValueEncoded('COD')?>">
-                    <?php echo (($lcomp->getValueEncoded('NOMBRE_COMP')))?></option>
-                    <?php
-                         } 
-                    ?>     
-               </select>  
-               <label>Indicar Compa&ntilde;ia:</label>
-               <input type="text" id="indicar_comp" name="indicar_comp" size="30"/> 
-         
-            </div> 
-          </fieldset> 
            
-           <fieldset>  
-               <legend>Deber&aacute; presentar Parte de Accidente en caso de:</legend>
-            <div class="datos_personales">
-            
-               <select name="tipo_parte" id="tipo_parte"> 
-                    <?php
-                        foreach ($tipo_parte as $lparte) {
-                            
-                    ?>
-                        <option value="<?php echo $lparte->getValueEncoded('COD')?>">
-                    <?php echo (($lparte->getValueEncoded('PARTE')))?></option>
-                    <?php
-                         } 
-                    ?>     
-               </select>  
-               <label>Indicar Nombre Empresa o Centro:</label>
-               <input type="text" id="nombre_emp" name="nombre_emp" size="50"/> 
-         
-            </div> 
-          </fieldset>  
+           <table class="tablaentrada">
+                <tr>
+                    <td>
+                      <label>Tiempo desde inicio del Episodio en :</label>  
+                      <input type="text" id="tiempo" name="tiempo" size="10"/>  
+                    </td>
+                    <td>
+                      <label>Ictus del despertar :</label>      
+                      <select name="despertar" id="despertar"> 
+                        <option value="0">No</option>
+                        <option value="1">Si</option>
+                      </select>    
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                      <label>CONTROL DE TRA:</label> 
+                      <select name="tra" id="tra"> 
+                       <option value="0">No</option>
+                       <option value="1">Si</option>
+                      </select>   
+                      <label>Valor:</label>  
+                      <input type="text" id="cifra_tra" name="cifra_tra" size="5"/>  
+                    </td>
+                    
+                    <td>
+                      <label>CONTROL DE GLUCEMIA:</label> 
+                      <select name="glucemia" id="glucemia"> 
+                        <option value="0">No</option>
+                        <option value="1">Si</option>
+                      </select>   
+                      <label>Valor:</label>  
+                      <input type="text" id="cifra_glucemia" name="cifra_glucemia" size="5"/>  
+                   </td>
+                    
+                </tr>
            
-           <fieldset>  
-            <legend>Paises Comunitarios o Extra Comunitarios</legend>
-             <div class="datos_personales"> 
-                 <input type="checkbox" name="comunitarios" id="comunitarios" value="1"/>
-                 <label>Deber&aacute;n presentar Formulario/modelo o el correspondiente al CONVENIO con su Pais.</label>   
-             </div>   
            </fieldset>  
-           
-           <fieldset>  
-             <legend>Accidente de Circulaci&oacute;n</legend>
-             <div class="datos_personales"> 
-               <select name="tipo_accidente" id="tipo_accidente"> 
-                    <?php
-                        foreach ($acc_circul as $acc) {
-                            
-                    ?>
-                        <option value="<?php echo $acc->getValueEncoded('COD')?>">
-                    <?php echo (($acc->getValueEncoded('ACCIDENTE')))?></option>
-                    <?php
-                         } 
-                    ?>     
-               </select>  
-               
-               <label>Colision:</label>  
-               <select name="colision" id="colision"> 
-                   <option value="0">No</option>
-                   <option value="1">Si</option>
-               </select>  
-               <label>Autoridad: </label>
-                <select name="tipo_autoridad" id="tipo_autoridad"> 
-                    <?php
-                        foreach ($lista_autoridad as $autoridad) {
-                            
-                    ?>
-                        <option value="<?php echo $autoridad->getValueEncoded('COD')?>">
-                    <?php echo (($autoridad->getValueEncoded('AUTORIDAD')))?></option>
-                    <?php
-                         } 
-                    ?>     
-               </select>  
-            
-              <label>Fecha:</label>
-              <input type="text" id="fecha_accidente" name="fecha_accidente" size="8" onblur="valida_fecha(this.value)" value="<?php echo date('d/m/Y'); ?>"/> 
-        
-               <label>Hora:</label>
-               <input type="text" id="hora_accidente" name="hora_accidente" size="5" value="<?php echo date('G:i'); ?>"/> 
-            </div>  
-            <div class="datos_personales">  
-               <label>N&ordm; Vehiculos intervienen:</label>
-               <input type="text" id="numero_vehiculos" name="numero_vehiculos" size="3"/> 
-             
-             </div> 
-             <div class="datos_personales">
-               <label>Lugar accidente:</label>
-               <input type="text" id="lugar_accidente" name="lugar_accidente" size="20"/> 
-          
-               <label>Otros Lesionados:</label>
-               <input type="text" id="otros_lesionados" name="otros_lesionados" size="20"/> 
-                 
-             </div>    
-           </fieldset>
-           
-           <fieldset>  
-            <legend>VEHICULO PROPIO:</legend>
-            <div class="datos_personales">
-               <label>Matricula:</label>
-               <input type="text" id="matricula_prop" name="matricula_prop" size="8"/> 
-               <label>Modelo:</label>
-               <input type="text" id="modelo_prop" name="modelo_prop" size="25"/> 
-               <label>Conductor:</label>
-               <input type="text" id="conductor_prop" name="conductor_prop" size="25"/> 
-            </div>
-            <div class="datos_personales">
-               <label>Propietario:</label>
-               <input type="text" id="propietario_prop" name="propietario_prop" size="20"/>    
-               <label>Compa&ntilde;ia Seguros:</label>
-               <input type="text" id="comp_seguro_prop" name="comp_seg_prop" size="20"/>   
-               <label>N&ordm; Poliza:</label>
-               <input type="text" id="mum_seguro_prop" name="num_seguro_prop" size="15"/>  
-               
-            </div>   
-            <div class="datos_personales">
-                <label>Juzgado y N&ordm; Dilegencia</label>
-                <input type="text" id="juzgado" name="juzgado" size="35"/>
-            </div>
-           </fieldset>  
-           
-           <fieldset>  
-            <legend>VEHICULO CONTRARIO:</legend>
-            <div class="datos_personales">
-               <label>Matricula:</label>
-               <input type="text" id="matricula_cont" name="matricula_cont" size="8"/> 
-               <label>Modelo:</label>
-               <input type="text" id="modelo_cont" name="modelo_cont" size="25"/> 
-               <label>Conductor:</label>
-               <input type="text" id="conductor_cont" name="conductor_cont" size="25"/> 
-            </div>
-            <div class="datos_personales">
-               <label>Propietario:</label>
-               <input type="text" id="propietario_cont" name="propietario_cont" size="20"/>    
-               <label>Compa&ntilde;ia Seguros:</label>
-               <input type="text" id="comp_seg_cont" name="comp_seg_cont" size="20"/>   
-               <label>N&ordm; Poliza:</label>
-               <input type="text" id="num_seguro_cont" name="num_seguro_cont" size="15"/>  
-               
-            </div>   
-           </fieldset>  
-           
+ 
            <fieldset>  
             <legend>ASISTENCIA PRESTADA:</legend>
             <div class="datos_personales">

@@ -2,13 +2,7 @@
 
 require_once ('config.php');
 require_once ('classes/Ficha.class.php');
-require_once ('classes/Comp_Seguro.class.php');
-require_once ('classes/Tipo_Acc_Circulacion.class.php');
-require_once ('classes/Tipo_Autoridad.class.php');
-require_once ('classes/Tipo_Parte_acc.class.php');
-require_once ('classes/Tipo_consulta_c3.class.php');
-require_once ('classes/Centros.class.php');
-require_once ('classes/Usuarios.class.php');
+
 
 
 
