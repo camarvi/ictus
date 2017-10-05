@@ -23,6 +23,7 @@ if (isset ($_GET['nuhsa'])){
     $centro=$_GET['centro'];
     $cnp=$_GET['cnpprofesional'];
     $sexo=$_GET['sexo'];
+    $fnacimientook=$_GET['fnacimiento'];
    
     
 }
@@ -134,7 +135,7 @@ if (isset ($_GET['nuhsa'])){
         "AN"=>$an,
         "CENTRO"=>$centro,
         "CNP"=>$cnp,
-        "SEXO"=>~sexo,
+        "SEXO"=>$sexo,
         "FNACIMIENTO"=>$fnacimientook,
         "FECHA"=>$fecha_ok,
         "TIEMPO"=>$tiempo,
@@ -165,11 +166,11 @@ if (isset ($_GET['nuhsa'])){
     
     $nuevaficha->nueva_ficha();
     
-   
+       
   
     ?>
 <script lang="javascript">
-    alert("PETICION REGISTRADA CORRECTAMENTE")
+    alert("FORMULARIO REGISTRADO CORRECTAMENTE")
 </script>
  <?php 
  }
@@ -241,7 +242,7 @@ if (isset ($_GET['nuhsa'])){
                     </td>
                     <td>
                       <label>Sexo:</label>
-                      <input type="text" id="nombre" name="sexo" size="10" value="<?php echo $sexo; ?>" />  
+                      <input type="text" id="tsexo" name="tsexo" size="10" value="<?php if ($sexo==1)  {echo "HOMBRE";} else { echo "MUJER";} ?>" />  
                     </td>
                     <td>
                      <label>F. Nacimiento:</label>
@@ -270,12 +271,11 @@ if (isset ($_GET['nuhsa'])){
                       </select>    
                     </td>
                 </tr>
-               
                 
                 <tr>
                    
                     <td>
-                      <label>CONTROL DE TRA:</label> 
+                      <label>CONTROL TEMPERATURA:</label> 
                       <select name="tra" id="tra"> 
                        <option value="0">No</option>
                        <option value="1">Si</option>

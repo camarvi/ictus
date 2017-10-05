@@ -26,7 +26,7 @@ $direccion3="http://10.8.65.5/botonrojo/hasistenciales.php?nuhsa=" . $nuhsa
   
 $direccionOK="index.php?nuhsa=AN0000002425"
         . "&centro=21027&perfilProfesional=01" 
-        .  "&codigooperador=1258"
+        .  "&codigooperador=1258&sexo=1"
         . "&cnpprofesional=00015161718&fnacimiento=10/05/1975" ;
 
 
