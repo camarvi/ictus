@@ -412,8 +412,12 @@ if (isset ($_GET['nuhsa'])){
                        <select name="toxicos" id="toxicos"> 
                         <option value="0">No</option>
                         <option value="1">Si</option>
-                      </select>    
-                      <input type="text" id="texto_toxicos" name="texto_toxicos" size="50"/>  
+                      </select> 
+                    </td>
+                </tr>
+                <tr> 
+                    <td colspan="2">
+                      <input type="text" id="texto_toxicos" name="texto_toxicos" size="30"/>  
                     </td>  
                 </tr>
                 
