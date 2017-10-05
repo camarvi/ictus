@@ -22,7 +22,7 @@ if (isset ($_GET['nuhsa'])){
     $an= $_GET['nuhsa'];   
     $centro=$_GET['centro'];
     $cnp=$_GET['cnpprofesional'];
- 
+    $sexo=$_GET['sexo'];
    
     
 }
@@ -32,18 +32,13 @@ if (isset ($_GET['nuhsa'])){
  if (isset ($_POST['registrar'])) {
 
    
+    $an=$_POST['an'];
      
     $centro=$_POST['centro'];
     
-     $separar =explode('/',$_POST["fecha"]);
-        $dia=trim($separar[0]);
-        $mes=trim($separar[1]);
-        $anio=trim($separar[2]);
-     $fecha_ok=$anio . "-" . $mes . "-" . $dia;
-     
+    $cnp=$_POST['cnp'];
     
-     $an=$_POST['an'];
-     
+    $sexo=$_POST['sexo'];
     
     if (strlen($_POST["fnacimiento"])){
         $separar1=explode('/',$_POST["fnacimiento"]);
@@ -54,79 +49,85 @@ if (isset ($_GET['nuhsa'])){
       } else {
       $fnacimientook=""; }
     
+     $hoy=date("d/m/Y"); 
+     $separar =explode('/',$hoy);
+        $dia=trim($separar[0]);
+        $mes=trim($separar[1]);
+        $anio=trim($separar[2]);
+     $fecha_ok=$anio . "-" . $mes . "-" . $dia;
      
-       
-    $comp_seguro=$_POST['comp_seguro'];
-    
-    if (isset($_POST['indicar_comp'])){
-        $indicar_comp=trim(html_entity_decode($_POST['indicar_comp']));
-    } else { $indicar_comp="";}
-    
-     
-    $tipo_parte=$_POST['tipo_parte'];
-     
-    if (isset ($_POST['nombre_emp'])) { 
-        $nombre_emp=  trim(html_entity_decode($_POST['nombre_emp'])) ;
-    }  else {$nombre_emp=""; }   
-     
-     
-     
-     if (isset($_POST['comunitarios'])){
-        $comunitarios=1; 
-     } else { $comunitarios=0; }
-     
-   
-    
-    if (isset ($_POST['otros_lesionados'])) { 
-        $otros_lesionados=  trim(html_entity_decode($_POST['otros_lesionados'])) ;
+      
+      
+    if (isset ($_POST['tiempo'])) { 
+        $tiempo=  trim(html_entity_decode($_POST['tiempo'])) ;
         
-    }  else {$otros_lesionados=""; }    
+    }  else {$tiempo=""; }   
     
-    if (isset ($_POST['matricula_prop'])) { 
-        $matricula_prop=  trim(html_entity_decode($_POST['matricula_prop'])) ;
+    
+    $despertar= (int) $_POST['despertar']; 
+    
+    $tra=(int) $_POST['tra'];
+    if (isset ($_POST['cifra_tra'])) { 
+        $cifra_tra=  trim(html_entity_decode($_POST['cifra_tra'])) ;
         
-    }  else {$matricula_prop=""; }    
-    
-    if (isset ($_POST['modelo_prop'])) { 
-        $modelo_prop=  trim(html_entity_decode($_POST['modelo_prop'])) ;
+    }  else {$cifra_tra=""; }   
+      
+    $glucemia=(int) $_POST['glucemia'];
+    if (isset ($_POST['cifra_glucemia'])) { 
+        $cifra_glucemia=  trim(html_entity_decode($_POST['cifra_glucemia'])) ;
         
-    }  else {$modelo_prop=""; }    
+    }  else {$cifra_glucemia=""; }     
+      
+    $ta=(int) $_POST['ta'];
+    if (isset ($_POST['cifra_ta'])) { 
+        $cifra_ta=  trim(html_entity_decode($_POST['cifra_ta'])) ;
+    }  else {$cifra_ta=""; }       
+      
+    $oxigeno=(int) $_POST['oxigeno'];
+    if (isset ($_POST['cifra_oxigeno'])) { 
+        $cifra_oxigeno=  trim(html_entity_decode($_POST['cifra_oxigeno'])) ;
+    }  else {$cifra_oxigeno=""; }       
+      
+    $cardiaca=(int) $_POST['cardiaca'];
+    if (isset ($_POST['cifra_cardiaca'])) { 
+        $cifra_cardiaca=  trim(html_entity_decode($_POST['cifra_cardiaca'])) ;
+    }  else {$cifra_cardiaca=""; }         
     
-    if (isset ($_POST['conductor_prop'])) { 
-        $conductor_prop=  trim(html_entity_decode($_POST['conductor_prop'])) ;
-        
-    }  else {$conductor_prop=""; }    
+    $ecg=(int) $_POST['ecg'];
     
-    if (isset ($_POST['propietario_prop'])) { 
-        $propietario_prop=  trim(html_entity_decode($_POST['propietario_prop'])) ;
-        
-    }  else {$propietario_prop=""; }    
+    $termoregulacion=(int) $_POST['termoregulacion'];
     
-    if (isset ($_POST['comp_seg_prop'])) { 
-        $comp_seg_prop=  trim(html_entity_decode($_POST['comp_seg_prop'])) ;
-        
-    }  else {$comp_seg_prop=""; }    
+    $antihipertensivo=(int) $_POST['antihipertensivo'];
+    if (isset ($_POST['cifra_antihipertensivo'])) { 
+        $cifra_antihipertensivo=  trim(html_entity_decode($_POST['cifra_antihipertensivo'])) ;
+    }  else {$cifra_antihipertensivo=""; }       
     
-   
+    $trat_glucemia=(int) $_POST['trat_glucemia'];
+    if (isset ($_POST['cifra_trat_glucemia'])) { 
+        $cifra_trat_glucemia=  trim(html_entity_decode($_POST['cifra_trat_glucemia'])) ;
+    }  else {$cifra_trat_glucemia=""; }     
     
-    $derivacion=$_POST['derivacion'];
+    $brazo=(int) $_POST['brazo'];
     
-    if (isset ($_POST['hospital_derivacion'])) { 
-        $hospital_derivacion=  trim(html_entity_decode($_POST['hospital_derivacion'])) ;
-        
-    }  else {$hospital_derivacion=""; }   
+    if (isset ($_POST['nihss'])) { 
+        $nihss=  trim(html_entity_decode($_POST['nihss'])) ;
+    }  else {$nihss=""; }     
+    
+    if (isset ($_POST['rankin'])) { 
+        $rankin=  trim(html_entity_decode($_POST['rankin'])) ;
+    }  else {$rankin=""; }  
+    
+    $activ_ictus=(int) $_POST['activ_ictus'];
+    
+    $traslado=(int) $_POST['traslado'];
+    
+    $toxicos=(int) $_POST['toxicos'];
+    if (isset ($_POST['texto_toxicos'])) { 
+        $texto_toxicos=  trim(html_entity_decode($_POST['texto_toxicos'])) ;
+    }  else {$texto_toxicos=""; }    
     
     
-    $ambulancia= (int) $_POST['ambulancia'];
     
-    $revision_pro_ant= (int) $_POST['revision_pro_ant'];
-    
-    
-    
-    if (isset ($_POST['parentesco'])) { 
-        $parentesco=  trim(html_entity_decode($_POST['parentesco'])) ;
-        
-    }  else {$parentesco=""; }  
    
     
     $nuevaficha=new Ficha(array(
@@ -158,16 +159,13 @@ if (isset ($_GET['nuhsa'])){
         "NIHSS"=>$nihss,
         "RANKIN"=>$rankin,
         "ACTIV_ICTUS"=>$activ_ictus,
-        "TRASLADO"=>$traslado));  
+        "TRASLADO"=>$traslado,
+        "TOXICOS"=>$toxicos,
+        "TEXTO_TOXICOS"=>$texto_toxicos));  
     
     $nuevaficha->nueva_ficha();
     
-    list($listaconsulta_c3)= Tipo_consulta_c3::getTipoConsulta();
-    list($comp_seguro)= Comp_Seguro::getListaComp();
-    list($tipo_parte)=  Tipo_Parte_acc::getTipoParte();
-    list($acc_circul)=  Tipo_Acc_Circulacion::getTipoAcc();
-    list($lista_autoridad)=  Tipo_Autoridad::getListaAutoridad();
-    list($listacentro)=  Centros::listaCentros();
+   
   
     ?>
 <script lang="javascript">
@@ -231,7 +229,7 @@ if (isset ($_GET['nuhsa'])){
        <form action="index.php" method="post">
            <input type="hidden" name="cnp" id="cnp" value="<?php echo $cnp?>"/>
            <input type="hidden" name="centro" id="centro" value="<?php echo $centro?>"/>
-         
+           <input type="hidden" name="sexo" id="centro" value="<?php echo $sexo?>"/>
            
           <fieldset>  
           <legend>Datos Usuario</legend>
@@ -239,7 +237,7 @@ if (isset ($_GET['nuhsa'])){
                 <tr>
                     <td>
                       <label>Nuhsa:</label>
-                      <input type="text" id="an" name="an" size="10" value="<?php echo $an;?>"/> 
+                      <input type="text" id="an" name="an" size="15" value="<?php echo $an;?>"/> 
                     </td>
                     <td>
                       <label>Sexo:</label>
@@ -247,7 +245,7 @@ if (isset ($_GET['nuhsa'])){
                     </td>
                     <td>
                      <label>F. Nacimiento:</label>
-                     <input type="text" id="fnacimiento" name="fnacimiento" size="10" value="<?php echo $fnacimientook; ?>"/> 
+                     <input type="text" id="fnacimiento" name="fnacimiento" size="10" readonly="readonly" value="<?php echo $fnacimientook; ?>"/> 
                     </td>
                 </tr>  
               
@@ -390,7 +388,7 @@ if (isset ($_GET['nuhsa'])){
                       <input type="text" id="rankin" name="rankin" size="15"/>  
                    </td>  
                 </tr>
-                     
+                         
                  <tr>
                     <td>
                       <label>ACTIVACION CODIGO ICTUS:</label> 
@@ -406,6 +404,17 @@ if (isset ($_GET['nuhsa'])){
                         <option value="1">Si</option>
                       </select>    
                    </td>  
+                </tr>
+                
+                 <tr>
+                    <td>
+                      <label>HABITOS TOXICOS:</label> 
+                       <select name="toxicos" id="toxicos"> 
+                        <option value="0">No</option>
+                        <option value="1">Si</option>
+                      </select>    
+                      <input type="text" id="texto_toxicos" name="texto_toxicos" size="50"/>  
+                    </td>  
                 </tr>
                 
            </table>
