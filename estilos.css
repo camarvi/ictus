@@ -21,6 +21,13 @@
          
     }
     
+    
+    h1,h3 {
+         text-align:center;
+         color: #238314;       
+    }
+     
+    
   legend {
     color: #2f2555;  
     font-weight: bold;
